@@ -15,9 +15,8 @@ export function fetchPosts() {
 }
 
 export function fetchPost(id) {
+  console.log("passed this");
   const request = axios.get(`${ROOT_URL}/posts/${id}`);
-  console.log(request);
-
   return {
     type: FETCH_POST,
     payload: request

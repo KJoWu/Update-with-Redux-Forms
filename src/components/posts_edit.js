@@ -19,6 +19,7 @@ function validate(values) {
   return errors;
 }
 
+
 class PostsEdit extends Component {
   static contextTypes = {
     router: PropTypes.object
@@ -30,11 +31,17 @@ class PostsEdit extends Component {
 
   render() {
     const { fields: { title, body }, handleSubmit } = this.props;
+    const { post } = this.props;
+
+    if (!post) {
+      return <div>Loading...</div>;
+    }
 
     return (
+      <div>
+      <Link to="/">Back To Index</Link>
       <form>
-        <h3>Create A New Post</h3>
-
+        <h3>Edit A Post</h3>
         <div className={`form-group ${title.touched && title.invalid ? 'has-danger' : ''}`}>
           <label>Title</label>
           <input type="text" className="form-control" {...title} />
@@ -53,21 +60,24 @@ class PostsEdit extends Component {
 
         <Link to="/" className="btn btn-danger">Cancel</Link>
       </form>
+      </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return { post: state.posts.post };
+  return { post: state.posts.post,
+    initialValues:state.posts.post
+  };
 }
 
-// connect: first argument is mapStateToProps, 2nd is mapDispatchToProps
-// reduxForm: 1st is form config, 2nd is mapStateToProps, 3rd is mapDispatchToProps
+
 export default reduxForm({
   form: 'PostsNewForm',
   fields: ['title','body'],
   validate
-}, null, { fetchPost })(PostsEdit);
+}, mapStateToProps, { fetchPost })(PostsEdit);
+
 
 
 
