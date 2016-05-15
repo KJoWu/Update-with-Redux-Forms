@@ -16,6 +16,9 @@ class PostsIndex extends Component {
             <span className="pull-xs-right">{post.categories}</span>
             <strong>{post.title}</strong>
           </Link>
+          <Link to={"posts/edit=" + post.id}>
+            Edit
+          </Link>
         </li>
       );
     });

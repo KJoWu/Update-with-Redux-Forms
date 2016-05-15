@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchPost, deletePost } from '../actions/index';
+import { fetchPost } from '../actions/index';
 import { Link } from 'react-router';
 
 class PostsShow extends Component {
@@ -34,4 +34,4 @@ function mapStateToProps(state) {
   return { post: state.posts.post };
 }
 
-export default connect(mapStateToProps, { fetchPost, deletePost })(PostsShow);
+export default connect(mapStateToProps, { fetchPost })(PostsShow);
