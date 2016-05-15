@@ -10,6 +10,8 @@ import PostsEdit from './components/posts_edit';
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={PostsIndex} />
-    <Route path="posts/edit:id" component={PostsEdit} />
+    <Route path="posts/:id" component={PostsShow} />
+    <Route path="posts/edit=:id" component={PostsEdit} />
+
   </Route>
 );
